@@ -8,15 +8,11 @@ emailInput.addEventListener('blur', () => {
 
     const mailcheckPlusPlus = new MailcheckPlusPlus();
 
-    mailcheckPlusPlus.run({
-        email: email,
-
-        suggested: function (suggestionObj) {
-            suggestion.textContent = `Did you mean: ${suggestionObj.full}?`;
-        },
-
-        empty: function () {
-            suggestion.textContent = '';
-        }
+    const result = mailcheckPlusPlus.run({
+        email: email
     });
+
+    suggestion.innerHTML = result ? 
+        `Did you mean: <strong>${result.full}</strong>?` : 
+        'No suggestions available.';
 });

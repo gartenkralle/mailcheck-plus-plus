@@ -33,13 +33,9 @@ export class MailcheckPlusPlus {
     opts.topLevelDomains = opts.topLevelDomains || this.defaultTopLevelDomains;
     opts.distanceFunction = opts.distanceFunction || this.sift4Distance;
 
-    const defaultCallback = (result) => result;
-    const suggestedCallback = opts.suggested || defaultCallback;
-    const emptyCallback = opts.empty || defaultCallback;
-
     const result = this.suggest(this.encodeEmail(opts.email), opts.domains, opts.secondLevelDomains, opts.topLevelDomains, opts.distanceFunction);
 
-    return result ? suggestedCallback(result) : emptyCallback();
+    return result;
   }
 
   suggest(email, domains, secondLevelDomains, topLevelDomains, distanceFunction) {
