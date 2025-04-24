@@ -29,17 +29,10 @@ yarn add mailcheck-plusplus
 ## 🔧 Usage
 
 ```js
-import Mailcheck from 'mailcheck-plusplus';
+import Mailcheck from './mailcheck.js';
 
-const result = Mailcheck.run({
-  email: 'user@gmial.com',
-  domains: ['gmail.com', 'yahoo.com', 'hotmail.com'],
-  topLevelDomains: ['com', 'net', 'org'],
-});
-
-if (result) {
-  console.log(`Did you mean: ${result.suggestion.full}?`);
-}
+const result = Mailcheck.run({ email: 'example@example.com' });
+console.log(result);
 ```
 
 ## 🔍 What's New
