@@ -27,15 +27,8 @@ export class MailcheckPlusPlus {
       "es", "gr", "ch", "no", "cz", "in", "net.au", "info", "biz", "mil", "co.jp", "sg", "hu", "uk"];
   }
 
-  run(opts) {
-    opts.domains = opts.domains || this.defaultDomains;
-    opts.secondLevelDomains = opts.secondLevelDomains || this.defaultSecondLevelDomains;
-    opts.topLevelDomains = opts.topLevelDomains || this.defaultTopLevelDomains;
-    opts.distanceFunction = opts.distanceFunction || this.sift4Distance;
-
-    const result = this.suggest(this.encodeEmail(opts.email), opts.domains, opts.secondLevelDomains, opts.topLevelDomains, opts.distanceFunction);
-
-    return result;
+  run(email) {
+    return this.suggest(this.encodeEmail(email), this.defaultDomains, this.defaultSecondLevelDomains, this.defaultTopLevelDomains, this.sift4Distance);
   }
 
   suggest(email, domains, secondLevelDomains, topLevelDomains, distanceFunction) {
@@ -203,12 +196,14 @@ export class MailcheckPlusPlus {
           if ((c1 + j < l1) && (s1.charAt(c1 + j) === s2.charAt(c2))) {
             c1 += j - 1;
             c2--;
+
             break;
           }
 
           if ((c2 + j < l2) && (s1.charAt(c1) === s2.charAt(c2 + j))) {
             c1--;
             c2 += j - 1;
+            
             break;
           }
         }
