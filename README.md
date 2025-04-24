@@ -45,13 +45,8 @@ if (result) {
 ## 🔍 What's New
 
 - Fully ES Module-compatible
-- TypeScript support (coming soon)
 - Improved typo detection
 - Rewritten for better performance and maintainability
-
-## 📚 Documentation
-
-Full docs coming soon! For now, check out the [examples](./examples) folder.
 
 ## 🙌 Acknowledgements
 
@@ -59,4 +54,4 @@ This project is based on the original [Mailcheck](https://github.com/mailcheck/m
 
 ## 📃 License
 
-MIT © [Your Name or Org Here]
+MIT © Clemens Schneider
