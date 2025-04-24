@@ -16,22 +16,10 @@ This is a continuation of the [original Mailcheck project](https://github.com/ma
 - ✅ Tested with real-world typos and domains
 - 🌍 Supports custom domain lists and localizations
 
-## 📦 Installation
-
-```bash
-npm install mailcheck-plusplus
-```
-
-or
-
-```bash
-yarn add mailcheck-plusplus
-```
-
 ## 🔧 Usage
 
 ```js
-import { MailcheckPlusPlus } from "https://cdn.jsdelivr.net/gh/gartenkralle/mailcheck-plus-plus@1.0.2/js/modules/mailcheck-plus-plus.js";
+import { MailcheckPlusPlus } from "https://cdn.jsdelivr.net/gh/gartenkralle/mailcheck-plus-plus@1.0.3/js/modules/mailcheck-plus-plus.js";
 
 const emailInput = document.getElementById('email');
 const suggestion = document.getElementById('suggestion');
