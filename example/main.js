@@ -6,7 +6,7 @@ const suggestion = document.getElementById('suggestion');
 emailInput.addEventListener('blur', () => {
     const result = MailcheckPlusPlus.run(emailInput.value);
 
-    suggestion.innerHTML = result ? 
-        `Did you mean: <strong>${result.full}</strong>?` : 
+    suggestion.textContent = result ? 
+        `Did you mean: ${result.full}?` : 
         'No suggestions available.';
 });
