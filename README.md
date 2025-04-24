@@ -29,10 +29,18 @@ yarn add mailcheck-plusplus
 ## 🔧 Usage
 
 ```js
-import Mailcheck from './mailcheck.js';
+import { MailcheckPlusPlus } from "../js/modules/mailcheck-plus-plus.js";
 
-const result = Mailcheck.run({ email: 'example@example.com' });
-console.log(result);
+const emailInput = document.getElementById('email');
+const suggestion = document.getElementById('suggestion');
+
+emailInput.addEventListener('blur', () => {
+    const result = MailcheckPlusPlus.run(emailInput.value);
+
+    suggestion.textContent = result ? 
+        `Did you mean: ${result.full}?` : 
+        'No suggestions available.';
+});
 ```
 
 ## 🔍 What's New
