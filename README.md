@@ -29,7 +29,7 @@ yarn add mailcheck-plusplus
 ## 🔧 Usage
 
 ```js
-import { MailcheckPlusPlus } from "../js/modules/mailcheck-plus-plus.js";
+import { MailcheckPlusPlus } from "https://cdn.jsdelivr.net/gh/gartenkralle/mailcheck-plus-plus@1.0.0/js/modules/mailcheck-plus-plus.js";
 
 const emailInput = document.getElementById('email');
 const suggestion = document.getElementById('suggestion');
