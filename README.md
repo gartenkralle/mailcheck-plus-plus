@@ -29,13 +29,13 @@ yarn add mailcheck-plusplus
 ## 🔧 Usage
 
 ```js
-import { MailcheckPlusPlus } from "https://cdn.jsdelivr.net/gh/gartenkralle/mailcheck-plus-plus@1.0.1/js/modules/mailcheck-plus-plus.js";
+import { MailcheckPlusPlus } from "https://cdn.jsdelivr.net/gh/gartenkralle/mailcheck-plus-plus@1.0.2/js/modules/mailcheck-plus-plus.js";
 
 const emailInput = document.getElementById('email');
 const suggestion = document.getElementById('suggestion');
 
 emailInput.addEventListener('blur', () => {
-    const result = MailcheckPlusPlus.run(emailInput.value);
+    const result = MailcheckPlusPlus.checkEmail(emailInput.value);
 
     suggestion.textContent = result ? 
         `Did you mean: ${result.full}?` : 

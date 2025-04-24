@@ -25,7 +25,7 @@ export class MailcheckPlusPlus {
       "net", "org", "edu", "gov", "jp", "nl", "kr", "se", "eu", "ie", "co.il", "us", "at", "be", "dk", "hk",
       "es", "gr", "ch", "no", "cz", "in", "net.au", "info", "biz", "mil", "co.jp", "sg", "hu", "uk"];
 
-  static run(email) {
+  static checkEmail(email) {
     return this.suggest(this.encodeEmail(email), this.defaultDomains, this.defaultSecondLevelDomains, this.defaultTopLevelDomains, this.sift4Distance);
   }
 

@@ -4,7 +4,7 @@ const emailInput = document.getElementById('email');
 const suggestion = document.getElementById('suggestion');
 
 emailInput.addEventListener('blur', () => {
-    const result = MailcheckPlusPlus.run(emailInput.value);
+    const result = MailcheckPlusPlus.checkEmail(emailInput.value);
 
     suggestion.textContent = result ? 
         `Did you mean: ${result.full}?` : 
