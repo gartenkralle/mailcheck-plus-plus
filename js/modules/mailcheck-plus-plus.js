@@ -5,26 +5,25 @@
  * Clemens Schneider (@gartenkralle)
  *
  * Released under the MIT License.
- *
- * v 1.1.2
+ * 
  */
 
-class Mailcheck {
+export class MailcheckPlusPlus {
   constructor() {
     this.domainThreshold = 2;
     this.secondLevelThreshold = 2;
     this.topLevelThreshold = 2;
 
-    this.defaultDomains = ['msn.com', 'bellsouth.net', 'telus.net', 'comcast.net', 'optusnet.com.au', 
+    this.defaultDomains = ['msn.com', 'bellsouth.net', 'telus.net', 'comcast.net', 'optusnet.com.au',
       'earthlink.net', 'qq.com', 'sky.com', 'icloud.com', 'mac.com', 'sympatico.ca', 'googlemail.com',
-      'att.net', 'xtra.co.nz', 'web.de', 'cox.net', 'gmail.com', 'ymail.com', 'aim.com', 'rogers.com', 
-      'verizon.net', 'rocketmail.com', 'google.com', 'optonline.net', 'sbcglobal.net', 'aol.com', 'me.com', 
+      'att.net', 'xtra.co.nz', 'web.de', 'cox.net', 'gmail.com', 'ymail.com', 'aim.com', 'rogers.com',
+      'verizon.net', 'rocketmail.com', 'google.com', 'optonline.net', 'sbcglobal.net', 'aol.com', 'me.com',
       'btinternet.com', 'charter.net', 'shaw.ca'];
 
     this.defaultSecondLevelDomains = ["yahoo", "hotmail", "mail", "live", "outlook", "gmx"];
 
-    this.defaultTopLevelDomains = ["com", "com.au", "com.tw", "ca", "co.nz", "co.uk", "de", "fr", "it", "ru", 
-      "net", "org", "edu", "gov", "jp", "nl", "kr", "se", "eu", "ie", "co.il", "us", "at", "be", "dk", "hk", 
+    this.defaultTopLevelDomains = ["com", "com.au", "com.tw", "ca", "co.nz", "co.uk", "de", "fr", "it", "ru",
+      "net", "org", "edu", "gov", "jp", "nl", "kr", "se", "eu", "ie", "co.il", "us", "at", "be", "dk", "hk",
       "es", "gr", "ch", "no", "cz", "in", "net.au", "info", "biz", "mil", "co.jp", "sg", "hu", "uk"];
   }
 
@@ -59,7 +58,7 @@ class Mailcheck {
     if (closestDomain) {
       if (closestDomain === emailParts.domain) {
         return false;
-      } 
+      }
       else {
         return { address: emailParts.address, domain: closestDomain, full: emailParts.address + "@" + closestDomain };
       }
@@ -70,7 +69,7 @@ class Mailcheck {
 
     if (emailParts.domain) {
       closestDomain = emailParts.domain;
-	    
+
       let rtrn = false;
 
       if (closestSecondLevelDomain && closestSecondLevelDomain !== emailParts.secondLevelDomain) {
@@ -93,7 +92,7 @@ class Mailcheck {
 
   findClosestDomain(domain, domains, distanceFunction, threshold) {
     threshold = threshold || this.topLevelThreshold;
-	  
+
     let dist;
     let minDist = Infinity;
     let closestDomain = null;
@@ -110,9 +109,9 @@ class Mailcheck {
       if (domain === domains[i]) {
         return domain;
       }
-	    
+
       dist = distanceFunction(domain, domains[i]);
-	    
+
       if (dist < minDist) {
         minDist = dist;
         closestDomain = domains[i];
@@ -121,7 +120,7 @@ class Mailcheck {
 
     if (minDist <= threshold && closestDomain !== null) {
       return closestDomain;
-    } 
+    }
     else {
       return false;
     }
@@ -136,7 +135,7 @@ class Mailcheck {
       if (!s2) {
         return 0;
       }
-	    
+
       return s2.length;
     }
 
@@ -157,60 +156,60 @@ class Mailcheck {
     while ((c1 < l1) && (c2 < l2)) {
       if (s1.charAt(c1) === s2.charAt(c2)) {
         local_cs++;
-	      
+
         let isTrans = false;
 
         let i = 0;
-	      
+
         while (i < offset_arr.length) {
           let ofs = offset_arr[i];
-		
+
           if (c1 <= ofs.c1 || c2 <= ofs.c2) {
             isTrans = Math.abs(c2 - c1) >= Math.abs(ofs.c2 - ofs.c1);
-		  
+
             if (isTrans) {
               trans++;
-            } 
-	    else {
+            }
+            else {
               if (!ofs.trans) {
                 ofs.trans = true;
                 trans++;
               }
             }
-		  
+
             break;
-          } 
-	  else {
+          }
+          else {
             if (c1 > ofs.c2 && c2 > ofs.c1) {
               offset_arr.splice(i, 1);
-            } 
-	    else {
+            }
+            else {
               i++;
             }
           }
         }
-	      
+
         offset_arr.push({
           c1,
           c2,
           trans: isTrans
         });
-      } 
+      }
       else {
         lcss += local_cs;
         local_cs = 0;
-	      
+
         if (c1 !== c2) {
           c1 = c2 = Math.min(c1, c2);
         }
-	      
+
         for (let j = 0; j < maxOffset && (c1 + j < l1 || c2 + j < l2); j++) {
           if ((c1 + j < l1) && (s1.charAt(c1 + j) === s2.charAt(c2))) {
             c1 += j - 1;
             c2--;
             break;
           }
-		
+
           if ((c2 + j < l2) && (s1.charAt(c1) === s2.charAt(c2 + j))) {
             c1--;
             c2 += j - 1;
@@ -218,25 +217,25 @@ class Mailcheck {
           }
         }
       }
-	    
+
       c1++;
       c2++;
-	    
+
       if ((c1 >= l1) || (c2 >= l2)) {
         lcss += local_cs;
         local_cs = 0;
         c1 = c2 = Math.min(c1, c2);
       }
     }
-	  
+
     lcss += local_cs;
-	  
+
     return Math.round(Math.max(l1, l2) - lcss + trans);
   }
 
   splitEmail(email) {
     email = email !== null ? (email.replace(/^\s*/, '').replace(/\s*$/, '')) : null;
-	  
+
     const parts = email.split('@');
 
     if (parts.length < 2) {
@@ -251,23 +250,23 @@ class Mailcheck {
 
     const domain = parts.pop();
     const domainParts = domain.split('.');
-	  
+
     let sld = '';
     let tld = '';
 
     if (domainParts.length === 0) {
       return false;
-    } 
+    }
     else if (domainParts.length === 1) {
       tld = domainParts[0];
-    } 
+    }
     else {
       sld = domainParts[0];
-	    
+
       for (let j = 1; j < domainParts.length; j++) {
         tld += domainParts[j] + '.';
       }
-	    
+
       tld = tld.substring(0, tld.length - 1);
     }
 
@@ -281,12 +280,10 @@ class Mailcheck {
 
   encodeEmail(email) {
     let result = encodeURI(email);
-	  
+
     result = result.replace('%20', ' ').replace('%25', '%').replace('%5E', '^')
-                   .replace('%60', '`').replace('%7B', '{').replace('%7C', '|')
-                   .replace('%7D', '}');
+      .replace('%60', '`').replace('%7B', '{').replace('%7C', '|')
+      .replace('%7D', '}');
     return result;
   }
 }
-
-export default Mailcheck;
