@@ -9,29 +9,27 @@
  */
 
 export class MailcheckPlusPlus {
-  constructor() {
-    this.domainThreshold = 2;
-    this.secondLevelThreshold = 2;
-    this.topLevelThreshold = 2;
+    static domainThreshold = 2;
+    static secondLevelThreshold = 2;
+    static topLevelThreshold = 2;
 
-    this.defaultDomains = ['msn.com', 'bellsouth.net', 'telus.net', 'comcast.net', 'optusnet.com.au',
+    static defaultDomains = ['msn.com', 'bellsouth.net', 'telus.net', 'comcast.net', 'optusnet.com.au',
       'earthlink.net', 'qq.com', 'sky.com', 'icloud.com', 'mac.com', 'sympatico.ca', 'googlemail.com',
       'att.net', 'xtra.co.nz', 'web.de', 'cox.net', 'gmail.com', 'ymail.com', 'aim.com', 'rogers.com',
       'verizon.net', 'rocketmail.com', 'google.com', 'optonline.net', 'sbcglobal.net', 'aol.com', 'me.com',
       'btinternet.com', 'charter.net', 'shaw.ca'];
 
-    this.defaultSecondLevelDomains = ["yahoo", "hotmail", "mail", "live", "outlook", "gmx"];
+    static defaultSecondLevelDomains = ["yahoo", "hotmail", "mail", "live", "outlook", "gmx"];
 
-    this.defaultTopLevelDomains = ["com", "com.au", "com.tw", "ca", "co.nz", "co.uk", "de", "fr", "it", "ru",
+    static defaultTopLevelDomains = ["com", "com.au", "com.tw", "ca", "co.nz", "co.uk", "de", "fr", "it", "ru",
       "net", "org", "edu", "gov", "jp", "nl", "kr", "se", "eu", "ie", "co.il", "us", "at", "be", "dk", "hk",
       "es", "gr", "ch", "no", "cz", "in", "net.au", "info", "biz", "mil", "co.jp", "sg", "hu", "uk"];
-  }
 
-  run(email) {
+  static run(email) {
     return this.suggest(this.encodeEmail(email), this.defaultDomains, this.defaultSecondLevelDomains, this.defaultTopLevelDomains, this.sift4Distance);
   }
 
-  suggest(email, domains, secondLevelDomains, topLevelDomains, distanceFunction) {
+  static suggest(email, domains, secondLevelDomains, topLevelDomains, distanceFunction) {
     email = email.toLowerCase();
 
     const emailParts = this.splitEmail(email);
@@ -79,7 +77,7 @@ export class MailcheckPlusPlus {
     return false;
   }
 
-  findClosestDomain(domain, domains, distanceFunction, threshold) {
+  static findClosestDomain(domain, domains, distanceFunction, threshold) {
     threshold = threshold || this.topLevelThreshold;
 
     let dist;
@@ -115,7 +113,7 @@ export class MailcheckPlusPlus {
     }
   }
 
-  sift4Distance(s1, s2, maxOffset) {
+  static sift4Distance(s1, s2, maxOffset) {
     if (maxOffset === undefined) {
       maxOffset = 5;
     }
@@ -203,7 +201,7 @@ export class MailcheckPlusPlus {
           if ((c2 + j < l2) && (s1.charAt(c1) === s2.charAt(c2 + j))) {
             c1--;
             c2 += j - 1;
-            
+
             break;
           }
         }
@@ -224,7 +222,7 @@ export class MailcheckPlusPlus {
     return Math.round(Math.max(l1, l2) - lcss + trans);
   }
 
-  splitEmail(email) {
+  static splitEmail(email) {
     email = email !== null ? (email.replace(/^\s*/, '').replace(/\s*$/, '')) : null;
 
     const parts = email.split('@');
@@ -269,7 +267,7 @@ export class MailcheckPlusPlus {
     };
   }
 
-  encodeEmail(email) {
+  static encodeEmail(email) {
     let result = encodeURI(email);
 
     result = result.replace('%20', ' ').replace('%25', '%').replace('%5E', '^')
