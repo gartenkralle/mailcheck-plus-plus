@@ -1,3 +1,5 @@
+[![](https://data.jsdelivr.com/v1/package/gh/gartenkralle/mailcheck-plus-plus/badge?style=rounded)](https://www.jsdelivr.com/package/gh/gartenkralle/mailcheck-plus-plus)
+
 # Mailcheck++
 
 > A modern revival of the original [Mailcheck](https://github.com/mailcheck/mailcheck) — now maintained and improved!
